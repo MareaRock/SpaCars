@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/d2813211f4.js" crossorigin="anonymous"></script>
+    <title>SpaCars-Tienda</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3 justify-content-center"> <!--HEADER-->
+
+            <div class="col-auto"><!--LOGO-->               
+            <img src="img/spacars.jpg" height="150" alt="">
+            </div>
+            
+            <div class="col-12 col-md-3 align-self-end mt-1 mb-2"><!--INICIO--> <!--TIENDA-->              
+                <a href="index.html" class="btn btn-block">Inicio</a>  
+            </div> 
+
+            <div class="col-12 col-md-3 align-self-end mt-1 mb-2">     
+                <a href="tienda.html" class="btn btn-block">Tienda</a>
+            </div>         
+        </div>
+
+        <div class="jumbotron my-2 d-flex">
+            <div class="container">
+                <div class="row justify-content-center"> <!--BUSCADOR / CARRITO-COMPRAR-->
+                    <div class="col-12 contenedor-carrito d-flex"><!--CARRITO MODAL-->
+                        
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalCarrito">Modal</button>                       
+                        <div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="modalCarrito">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Carrito de compra</h5>
+                                        <button class="close" data-dismiss="modal" aria-label="cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <h2>Articulos:</h2>                              
+
+                                        <ul class="list-group" id="listaCarrito">
+                                            
+                                        </ul>
+                                        <br>
+                                        <p class="text-right">Total: <span id="total"></span></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="col-6"> <!-- BUSCADOR -->
+                            <div class="input-group">
+                                <input type="text" name="buscador" id="buscador" class="form-control" placeholder="Buscar...">
+                                <div class="input-group-append">
+                                    <span class="input-group-text btn btn-buscar"  id="buscar"><i class="fas fa-search"></i></span> <!--BOTON DE BUSCAR-->
+                                </div> 
+                            </div>
+                    </div>                    
+                
+                    <div class="col-6"> <!--CATEGORIAS-->
+                        <form>
+                            <div class="form-group"> <!--CATEGORIAS-->
+                                <select name="categorias" id="categorias" class="form-control custom-select"> <!--CATEGORIAS-->
+                                    <option value="">Todos</option>
+                                    <option value="interior">Interior</option>
+                                    <option value="exterior">Exterior</option>
+                                    <option value="kit">Kit</option>
+                                    <option value="servicio">Servicios</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-3" id="espacio"> <!--ARTICULOS-->
+            
+        </div>
+    
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tienda.js"></script>
+</body>
+</html>

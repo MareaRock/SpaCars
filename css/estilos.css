@@ -1,0 +1,43 @@
+body{
+    background-color: #212121;  color: white; 
+}
+.card{
+    padding: 10px 10px; border: white solid 1px;
+    background: #212121;
+}
+.card-body{
+    background: #212121f5;
+    color: white; 
+}
+.btn{
+    background-color: #ce9314;    
+    color: #212121;
+    font-weight: bold ;
+}
+a{text-decoration: none;}
+
+.precio{font-size: large;}
+.precio::before{content: "$ ";}
+.precio::after{content: ".-";}
+
+.error{  
+    font-size: larger;
+}
+
+.jumbotron{
+    background-color:#ce9314;
+    padding: 30px 0px;
+}
+
+.contenedor-carrito{
+    color: #212121;
+    font-weight: bold;
+}
+
+.btn-buscar{
+    border: none;
+    background-color: #212121; color: #fff;
+}
+.btn-buscar:hover{
+    color: #ce9314;
+}
