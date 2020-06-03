@@ -87,8 +87,11 @@ let total = 0;
 let $listaCarrito =  document.querySelector("#listaCarrito");
 let $total = document.querySelector("#total");
 
+//Muestra Grafica de cada card
 function renderItems() {
+
     for (let info of productos){
+
         // CREACION DE LA CARD
         var card = document.createElement("div");
         card.classList.add("card","col-6","my-2","col-md-4","border-bottom-0","border-right-0");
@@ -207,23 +210,68 @@ renderItems();
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------
 
 var numProductos = productos.length;
-
 var botonBuscar = document.getElementById("buscar"); //Boton Buscar-----------
-botonBuscar.addEventListener("click" , function(){
+botonBuscar.addEventListener("click" , function renderItems(){
     
     var categorias = document.getElementById("categorias");//categorias----------
-    var seleccion = categorias.selectedIdex;               //categorias----------
+    var seleccion = categorias.selectedIndex;              //categorias----------
     var categorias = categorias.options[seleccion].value;  //categorias----------
+    
 
     var campoBuscador = document.getElementById("buscador");//Buscador-----------
     var campoBuscador = campoBuscador.value;                //Buscador-----------
     var campoBuscador = campoBuscador.toLowerCase();        //Buscador-----------    
     
-    for (var i = 0; i < numProductos; i++){
-        var resultado = productos[i].articulo;
-            $espacio.innerHTML = resultado;
-    }
-    
+    $espacio.innerHTML=" ";
+        
+    for (let x=0 ; x < numProductos ; x++){
+        
+        if (categorias == "" || categorias == productos[x].categoria){
+            console.log(categorias);
+            // CREACION DE LA CARD
+            var card = document.createElement("div");
+            card.classList.add("card","col-6","my-2","col-md-4","border-bottom-0","border-right-0");
+            // CREACION IMAGEN DE LA CARD
+            var cardImg = document.createElement("img");
+            cardImg.classList.add("card-img-top","img-fluid");
+            cardImg.setAttribute("src","img/productos/" + productos[x].avatar);
+            // CREACION DE CARD-BODY
+            var cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+            // CREACION DE TITULO <H3>
+            var cardTitulo = document.createElement("h3");
+            cardTitulo.classList.add("card-title");
+            cardTitulo.textContent = productos[x].articulo ;
+            // CREACION DE PRECIO <P>
+            var cardPrecio = document.createElement("p");
+            cardPrecio.classList.add("card-subtitle","precio");
+            cardPrecio.textContent = productos[x].precio ;
+            // CREACION DE DESCRIPCION <P>
+            var cardDescripcion = document.createElement("p");
+            cardDescripcion.classList.add("card-text");
+            cardDescripcion.textContent = productos[x].descricion ;
+            // CREACION DE FOOTER DE CARD
+            var cardFooter = document.createElement("div");
+            cardFooter.classList.add("card-footer","footerCard");
+            // CREACION DE BOTON AÑADIR
+            var cardBoton = document.createElement("button"); 
+            cardBoton.classList.add("btn","btn-block","btn-añadir",); 
+            cardBoton.setAttribute("id","marcador"); 
+            cardBoton.textContent = "Añadir.";
+            cardBoton.addEventListener("click", addCarrito);
+            //INSERTAMOS
+            cardBody.appendChild(cardTitulo);
+            cardBody.appendChild(cardPrecio);
+            cardBody.appendChild(cardDescripcion);
+            cardFooter.appendChild(cardBoton);
+            card.appendChild(cardImg);
+            card.appendChild(cardBody);
+            card.appendChild(cardFooter);
+            $espacio.appendChild(card);
+        }
+    }           
+
+
+
+
 });
-
-
