@@ -95,28 +95,39 @@ function renderItems() {
         // CREACION IMAGEN DE LA CARD
         var cardImg = document.createElement("img");
         cardImg.classList.add("card-img-top","img-fluid");
-        cardImg.setAttribute("src","img/productos/cepillo.jpg");
+        cardImg.setAttribute("src","img/productos/" + info.avatar);
         // CREACION DE CARD-BODY
         var cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
         // CREACION DE TITULO <H3>
         var cardTitulo = document.createElement("h3");
         cardTitulo.classList.add("card-title");
-        
+        cardTitulo.textContent = info.articulo ;
         // CREACION DE PRECIO <P>
         var cardPrecio = document.createElement("p");
         cardPrecio.classList.add("card-subtitle","precio");
+        cardPrecio.textContent = info.precio ;
+        // CREACION DE DESCRIPCION <P>
+        var cardDescripcion = document.createElement("p");
+        cardDescripcion.classList.add("card-text");
+        cardDescripcion.textContent = info.descricion ;
+        // CREACION DE FOOTER DE CARD
+        var cardFooter = document.createElement("div");
+        cardFooter.classList.add("card-footer","footerCard");
         // CREACION DE BOTON AÑADIR
         var cardBoton = document.createElement("button"); 
-        cardBoton.classList.add("btn","btn-block"); 
+        cardBoton.classList.add("btn","btn-block","btn-añadir",); 
         cardBoton.setAttribute("id","marcador"); 
+        cardBoton.textContent = "Añadir.";
         cardBoton.addEventListener("click", addCarrito);
         //INSERTAMOS
         cardBody.appendChild(cardTitulo);
         cardBody.appendChild(cardPrecio);
-        cardBody.appendChild(cardBoton);
+        cardBody.appendChild(cardDescripcion);
+        cardFooter.appendChild(cardBoton);
         card.appendChild(cardImg);
         card.appendChild(cardBody);
+        card.appendChild(cardFooter);
         $espacio.appendChild(card);
     }
 }

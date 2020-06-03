@@ -33,7 +33,12 @@ a{text-decoration: none;}
     color: #212121;
     font-weight: bold;
 }
-
+.footerCard{
+    background: none;
+}
+.btn-añadir:hover{
+    color: #fff;
+}
 .btn-buscar{
     border: none;
     background-color: #212121; color: #fff;
