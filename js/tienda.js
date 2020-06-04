@@ -3,6 +3,7 @@ var productos =[
         id:1,
         avatar:'arbolito-interior.jpg',
         articulo:'Arbolito',
+        name:'Arbolito',
         descricion:'Arbolito perfumado de inteior',
         precio:'50',
         categoria:'interior',
@@ -11,6 +12,7 @@ var productos =[
         id:2,
         avatar:'perfume-interior.jpg',
         articulo:'Desodorante',
+        name:'Desodorante',
         descricion:'Desodorante de interior coco/limon',
         precio:'160',
         categoria:'interior',
@@ -19,6 +21,7 @@ var productos =[
         id:3,
         avatar:'cepillo.jpg',
         articulo:'Cepillo',
+        name:'Cepillo',
         descricion:'Cepillo para torpedo',
         precio:'260',
         categoria:'interior',
@@ -27,6 +30,7 @@ var productos =[
         id:4,
         avatar:'plumero.jpg',
         articulo:'Plumero',
+        name:'Plumero',
         descricion:'Plumero super gay para interior',
         precio:'300',
         categoria:'interior',
@@ -35,6 +39,7 @@ var productos =[
         id:5,
         avatar:'paño-microfibra.jpg',
         articulo:'Paños x3',
+        name:'Paños',
         descricion:'Paño de microfibra para secado',
         precio:'120',
         categoria:'kit',
@@ -43,6 +48,7 @@ var productos =[
         id:6,
         avatar:'kit-limpieza.jpg',
         articulo:'Kit limpieza',
+        name:'Kitlimpieza',
         descricion:'Balde, shampoo, perfume, paño',
         precio:'2000',
         categoria:'kit',
@@ -51,6 +57,7 @@ var productos =[
         id:7,
         avatar:'limpieza-interior.jpg',
         articulo:'Descontaminacion',
+        name:'Descontaminacion',
         descricion:'Limpieza profunda de interior y tapizados',
         precio:'1700',
         categoria:'servicio',
@@ -59,6 +66,7 @@ var productos =[
         id:8,
         avatar:'pulido.jpg',
         articulo:'Pulido',
+        name:'Pulido',
         descricion:'Pulido de carroceria y opticas',
         precio:'2500',
         categoria:'servicio',
@@ -67,6 +75,7 @@ var productos =[
         id:9,
         avatar:'esponja.jpg',
         articulo:'Esponja',
+        name:'Esponja',
         descricion:'Esponja limpieza exterior',
         precio:'50',
         categoria:'exterior',
@@ -75,6 +84,7 @@ var productos =[
         id:10,
         avatar:'shampoo.jpg',
         articulo:'Shampoo Toxic Shine',
+        name:'Shampoo',
         descricion:'Shampoo para autos con tratamiento',
         precio:'600',
         categoria:'exterior',
@@ -102,13 +112,15 @@ function renderItems() {
         // CREACION DE CARD-BODY
         var cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
-        // CREACION DE TITULO <H3>
+        // CREACION DE TITULO DEL ARTICULO <H3>
         var cardTitulo = document.createElement("h3");
         cardTitulo.classList.add("card-title");
+        cardTitulo.setAttribute("id", "articulo");       
         cardTitulo.textContent = info.articulo ;
         // CREACION DE PRECIO <P>
         var cardPrecio = document.createElement("p");
         cardPrecio.classList.add("card-subtitle","precio");
+        cardPrecio.setAttribute("id","precio");
         cardPrecio.textContent = info.precio ;
         // CREACION DE DESCRIPCION <P>
         var cardDescripcion = document.createElement("p");
@@ -120,7 +132,7 @@ function renderItems() {
         // CREACION DE BOTON AÑADIR
         var cardBoton = document.createElement("button"); 
         cardBoton.classList.add("btn","btn-block","btn-añadir",); 
-        cardBoton.setAttribute("id","marcador"); 
+        cardBoton.setAttribute("marcador",info["id"]); 
         cardBoton.textContent = "Añadir.";
         cardBoton.addEventListener("click", addCarrito);
         //INSERTAMOS
@@ -132,13 +144,18 @@ function renderItems() {
         card.appendChild(cardBody);
         card.appendChild(cardFooter);
         $espacio.appendChild(card);
+
+        
     }
 }
 //FUNCION DE ADDCARRITO
 function addCarrito(){
-    carrito.push(getAttribute("marcador"))
+    console.log("se agrego al carrito");
+    carrito.push(this.getAttribute("marcador"));
+    // console.log(carrito);
+    
     //CALCULO DEL TOTAL
-    calcularTotal();
+    //calcularTotal();
     //RENDERIZA CARRITO
     renderizarCarrito();
 }
@@ -180,7 +197,7 @@ function renderizarCarrito(){
 }
 
 function borrarItemCarrito(){
-    console.log()
+    console.log("Boton para borrar")
     let id = this.getAttribute("item");
     listaCarrito = carrito.filter(function(carritoId){
         return carritoId !== id;
@@ -193,14 +210,17 @@ function borrarItemCarrito(){
 
 function calcularTotal(){
     //Limpiamos precio anterior
-    total =0;
+    total = 0;
     // Recorremos array del carrito
     for(let item of listaCarrito){
+        //Obtener el precio de cada elemento
         let miItem = productos.filter(function(itemBaseDatos){
+            console.log(itemBaseDatos);
             return itemBaseDatos["id"] == item;
         });
         total = total + miItem[0]["precio"];
     }
+    //Imprime el precio
     $total.textContent = total.toFixed(2);
 }
 
@@ -241,10 +261,12 @@ botonBuscar.addEventListener("click" , function renderItems(){
             // CREACION DE TITULO <H3>
             var cardTitulo = document.createElement("h3");
             cardTitulo.classList.add("card-title");
+            cardTitulo.setAttribute("id","articulo"); 
             cardTitulo.textContent = productos[x].articulo ;
             // CREACION DE PRECIO <P>
             var cardPrecio = document.createElement("p");
             cardPrecio.classList.add("card-subtitle","precio");
+            cardPrecio.setAttribute("id","precio");
             cardPrecio.textContent = productos[x].precio ;
             // CREACION DE DESCRIPCION <P>
             var cardDescripcion = document.createElement("p");
@@ -258,7 +280,7 @@ botonBuscar.addEventListener("click" , function renderItems(){
             cardBoton.classList.add("btn","btn-block","btn-añadir",); 
             cardBoton.setAttribute("id","marcador"); 
             cardBoton.textContent = "Añadir.";
-            cardBoton.addEventListener("click", addCarrito);
+            cardBoton.addEventListener("click", capturar);
             //INSERTAMOS
             cardBody.appendChild(cardTitulo);
             cardBody.appendChild(cardPrecio);
