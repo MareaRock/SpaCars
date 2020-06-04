@@ -152,7 +152,7 @@ function renderItems() {
 function addCarrito(){
     console.log("se agrego al carrito");
     carrito.push(this.getAttribute("marcador"));
-    console.log("id del art: "+carrito);
+    console.log("id del los art: "+carrito);
     console.log("cant en carrito: "+carrito.length);
     
     //CALCULO DEL TOTAL
@@ -182,7 +182,7 @@ function renderizarCarrito(){
         //Creamos el nodo del producto del carrito
         let nuevoProducto = document.createElement("li");
         nuevoProducto.classList.add("list-group-item","text-right","mx-2");
-        nuevoProducto.textContent = `${numeroUnidadesItem} x ${miItem[0]['articulo']} - ${miItem[0]['precio']}$`;
+        nuevoProducto.textContent = `${numeroUnidadesItem} x ${miItem[0]['articulo']} - $${miItem[0]['precio']}`;
         
         //BOTON BORRAR
 
@@ -201,11 +201,28 @@ function renderizarCarrito(){
 function borrarItemCarrito(){
     console.log("Se apreto el boton de borrar")
     let id = this.getAttribute("item");
-    listaCarrito = carrito.filter(function(carritoId){
- 
-        return carritoId !== id;
-    });
+    // listaCarrito = carrito.filter(function(carritoId){      
+    //     return carritoId !== id;
+    // });
+
+    for (var j=0; j<carrito.length ; j++){
+        if  (carrito[j]==id)
+        {
+            pos = j;
+        }
+    }
+
+    console.log("id del los art antes del splice: "+carrito);
+    console.log("Longitud del carrito antes del splice:"+carrito.length);
+
+    carrito.splice(pos,1);
     
+    console.log("Id del producto en boton de borrar: "+id);
+    console.log("id del los art despues del splice: "+carrito);
+    console.log("Longitud del carrito despues del splice: "+carrito.length);
+    
+    //carrito.splice(id-1, 1);
+
     //volvemos a renderizar
     renderizarCarrito();
     calcularTotal();
