@@ -156,8 +156,8 @@ function addCarrito(){
     console.log("cant en carrito: "+carrito.length);
     
     //CALCULO DEL TOTAL
-    console.log("total: "+total);
     calcularTotal();
+    console.log("total: "+total);
     //RENDERIZA CARRITO
     renderizarCarrito();
 }
@@ -222,9 +222,9 @@ function calcularTotal(){
             return itemBaseDatos["id"] == item;
         });
         
-        total = total + miItem[0]["precio"];
-        console.log("la var miItem: "+miItem[0]["precio"]);
-        console.log("la var total: "+total);
+        total = total + parseInt(miItem[0]["precio"]);
+        // console.log("la var miItem es de tipo: "+ typeof miItem[0]["precio"]);
+        // console.log("la var total es de tipo: "+ typeof total);
     }
     //Imprime el precio
        
