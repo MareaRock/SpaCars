@@ -115,13 +115,13 @@ function renderItems() {
         // CREACION DE TITULO DEL ARTICULO <H3>
         var cardTitulo = document.createElement("h3");
         cardTitulo.classList.add("card-title");
-        cardTitulo.setAttribute("id", "articulo");       
+        // cardTitulo.setAttribute("id", "articulo");       
         cardTitulo.textContent = info.articulo ;
         // CREACION DE PRECIO <P>
         var cardPrecio = document.createElement("p");
         cardPrecio.classList.add("card-subtitle","precio");
-        cardPrecio.setAttribute("id","precio");
-        cardPrecio.textContent = info.precio ;
+        // cardPrecio.setAttribute("id","precio");
+        cardPrecio.textContent = info.precio;
         // CREACION DE DESCRIPCION <P>
         var cardDescripcion = document.createElement("p");
         cardDescripcion.classList.add("card-text");
@@ -152,10 +152,12 @@ function renderItems() {
 function addCarrito(){
     console.log("se agrego al carrito");
     carrito.push(this.getAttribute("marcador"));
-    // console.log(carrito);
+    console.log("id del art: "+carrito);
+    console.log("cant en carrito: "+carrito.length);
     
     //CALCULO DEL TOTAL
-    //calcularTotal();
+    console.log("total: "+total);
+    calcularTotal();
     //RENDERIZA CARRITO
     renderizarCarrito();
 }
@@ -197,12 +199,13 @@ function renderizarCarrito(){
 }
 
 function borrarItemCarrito(){
-    console.log("Boton para borrar")
+    console.log("Se apreto el boton de borrar")
     let id = this.getAttribute("item");
     listaCarrito = carrito.filter(function(carritoId){
+ 
         return carritoId !== id;
     });
-
+    
     //volvemos a renderizar
     renderizarCarrito();
     calcularTotal();
@@ -210,18 +213,23 @@ function borrarItemCarrito(){
 
 function calcularTotal(){
     //Limpiamos precio anterior
-    total = 0;
+    total =0;
     // Recorremos array del carrito
-    for(let item of listaCarrito){
+    for(let item of carrito){
         //Obtener el precio de cada elemento
         let miItem = productos.filter(function(itemBaseDatos){
-            console.log(itemBaseDatos);
+            
             return itemBaseDatos["id"] == item;
         });
+        
         total = total + miItem[0]["precio"];
+        console.log("la var miItem: "+miItem[0]["precio"]);
+        console.log("la var total: "+total);
     }
     //Imprime el precio
-    $total.textContent = total.toFixed(2);
+       
+    $total.textContent = total;
+    
 }
 
 renderItems();
@@ -261,12 +269,12 @@ botonBuscar.addEventListener("click" , function renderItems(){
             // CREACION DE TITULO <H3>
             var cardTitulo = document.createElement("h3");
             cardTitulo.classList.add("card-title");
-            cardTitulo.setAttribute("id","articulo"); 
+            // cardTitulo.setAttribute("id","articulo"); 
             cardTitulo.textContent = productos[x].articulo ;
             // CREACION DE PRECIO <P>
             var cardPrecio = document.createElement("p");
             cardPrecio.classList.add("card-subtitle","precio");
-            cardPrecio.setAttribute("id","precio");
+            // cardPrecio.setAttribute("id","precio");
             cardPrecio.textContent = productos[x].precio ;
             // CREACION DE DESCRIPCION <P>
             var cardDescripcion = document.createElement("p");

@@ -17,8 +17,7 @@ body{
 a{text-decoration: none;}
 
 .precio{font-size: large;}
-.precio::before{content: "$ ";}
-.precio::after{content: ".-";}
+
 
 .error{  
     font-size: larger;
